@@ -18,6 +18,7 @@ private:
 
 public:
   MySuperDynamicArray();
+  ~MySuperDynamicArray() override = default;
 
   void pushFront(IPhone iphone) override;
 

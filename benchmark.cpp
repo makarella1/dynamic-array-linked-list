@@ -14,7 +14,7 @@ void runBenchmarks(BenchmarkBase &structToBenchmark, std::string tag)
 
   float timePassedToPushBack = getTimePassed(pushBackStart, pushBackEnd);
 
-  std::cout << "[" << tag << "]: took" << timePassedToPushBack << "s to push back 20 000 elements" << std::endl;
+  std::cout << "[" << tag << "]: took " << timePassedToPushBack << "s to push back 20 000 elements" << std::endl;
 
   clock_t pushFrontStart = clock();
   for (int i = 0; i < 10000; i++)
@@ -25,7 +25,7 @@ void runBenchmarks(BenchmarkBase &structToBenchmark, std::string tag)
 
   float timePassedToPushFront = getTimePassed(pushFrontStart, pushFrontStartEnd);
 
-  std::cout << "[" << tag << "]: took" << timePassedToPushFront << "s to push front 10 000 elements" << std::endl;
+  std::cout << "[" << tag << "]: took " << timePassedToPushFront << "s to push front 10 000 elements" << std::endl;
 
   clock_t getElementsStart = clock();
   for (int i = 0; i < 20000; i++)
@@ -36,7 +36,7 @@ void runBenchmarks(BenchmarkBase &structToBenchmark, std::string tag)
 
   float timePassedToGetElements = getTimePassed(getElementsStart, getElementsEnd);
 
-  std::cout << "[" << tag << "]: took" << timePassedToGetElements << "s to get 20 000 elements with random indexes" << std::endl;
+  std::cout << "[" << tag << "]: took " << timePassedToGetElements << "s to get 20 000 elements with random indexes" << std::endl;
 
   clock_t popFrontStart = clock();
   for (int i = 0; i < 5000; i++)
@@ -47,7 +47,7 @@ void runBenchmarks(BenchmarkBase &structToBenchmark, std::string tag)
 
   float timePassedToPopFront = getTimePassed(popFrontStart, popFrontEnd);
 
-  std::cout << "[" << tag << "]: took" << timePassedToPopFront << "s to pop front 5 000 elements" << std::endl;
+  std::cout << "[" << tag << "]: took " << timePassedToPopFront << "s to pop front 5 000 elements" << std::endl;
 
   clock_t popBackStart = clock();
   for (int i = 0; i < 5000; i++)
@@ -58,7 +58,11 @@ void runBenchmarks(BenchmarkBase &structToBenchmark, std::string tag)
 
   float timePassedToPopBack = getTimePassed(popBackStart, popBackEnd);
 
-  std::cout << "[" << tag << "]: took" << timePassedToPopBack << "s to pop back 5 000 elements" << std::endl;
+  std::cout << "[" << tag << "]: took " << timePassedToPopBack << "s to pop back 5 000 elements" << std::endl;
+
+  float totalTimePassed = timePassedToPushBack + timePassedToPushFront + timePassedToGetElements + timePassedToPopFront + timePassedToPopBack;
+
+  std::cout << "[" << tag << "]: took " << totalTimePassed << "s to perform all operations" << std::endl;
 }
 
 float getTimePassed(clock_t start, clock_t end)

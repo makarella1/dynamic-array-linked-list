@@ -13,6 +13,6 @@ main()
   MySuperDynamicArray array;
   MySuperLinkedList list;
 
-  runBenchmarks(array, "DYNAMIC ARRAY");
-  runBenchmarks(list, "LINKED LIST");
+  // runBenchmarks(array, "DYNAMIC ARRAY");
+  // runBenchmarks(list, "LINKED LIST");
 }

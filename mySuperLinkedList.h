@@ -19,6 +19,7 @@ private:
 
 public:
   MySuperLinkedList();
+  ~MySuperLinkedList() override = default;
 
   void pushFront(IPhone iphone) override;
 
