@@ -3,8 +3,6 @@
 #include "iphone.h"
 #include "benchmark.h"
 
-const int CAPACITY = 5;
-
 struct MySuperDynamicArray : public BenchmarkBase
 {
 private:

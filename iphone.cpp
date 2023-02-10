@@ -1,6 +1,6 @@
-#include "iphone.h"
-
 #include <iostream>
+
+#include "iphone.h"
 
 IPhone::IPhone()
 {

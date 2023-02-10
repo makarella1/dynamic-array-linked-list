@@ -1,3 +1,4 @@
+#include <iostream>
 #include "mySuperLinkedList.h"
 #include "iphone.h"
 
@@ -5,6 +6,11 @@ MySuperLinkedList::MySuperLinkedList()
 {
   head = nullptr;
   size = 0;
+}
+
+bool MySuperLinkedList::isEmpty()
+{
+  return head == nullptr;
 }
 
 void MySuperLinkedList::pushFront(IPhone iphone)
@@ -20,7 +26,7 @@ void MySuperLinkedList::pushFront(IPhone iphone)
 
 void MySuperLinkedList::pushBack(IPhone iphone)
 {
-  if (head == nullptr)
+  if (isEmpty())
   {
     head = new Node(iphone);
   }
@@ -38,36 +44,32 @@ void MySuperLinkedList::pushBack(IPhone iphone)
     current->next = newTail;
   }
   ++size;
-
-  return;
 }
 
 IPhone MySuperLinkedList::get(int index)
 {
-  if (index >= 0 && index < size)
+  if (index <= 0 && index > size)
   {
-    int countIndex = 0;
-
-    Node *current = head;
-
-    for (int i = 0; i < index; i++)
-    {
-      current = current->next;
-    }
-
-    return current->iphone;
+    std::cerr << "Can you just leave me alone?" << std::endl;
+    exit(1);
   }
+
+  Node *current = head;
+
+  for (int i = 0; i < index; i++)
+  {
+    current = current->next;
+  }
+
+  return current->iphone;
 }
 
 IPhone MySuperLinkedList::popFront()
 {
-  if (head == nullptr)
+  if (isEmpty())
   {
-    std::cerr << "You're hopeless, take a dummy data as there's nothing else I can give you!" << std::endl;
-
-    IPhone dummy = IPhone();
-
-    return dummy;
+    std::cerr << "You're hopeless, there's nothing I can give you!" << std::endl;
+    exit(1);
   }
 
   Node *newHead = head->next;
@@ -85,13 +87,10 @@ IPhone MySuperLinkedList::popFront()
 
 IPhone MySuperLinkedList::popBack()
 {
-  if (head == nullptr)
+  if (isEmpty())
   {
-    std::cerr << "You're hopeless, take a dummy data as there's nothing else I can give you!" << std::endl;
-
-    IPhone dummy = IPhone();
-
-    return dummy;
+    std::cerr << "What do you expect me to give you?" << std::endl;
+    exit(1);
   }
   else if (head->next == nullptr)
   {
@@ -111,7 +110,7 @@ IPhone MySuperLinkedList::popBack()
     current = current->next;
   }
 
-  IPhone currentData = current->next->iphone;
+  IPhone lastData = current->next->iphone;
 
   delete current->next;
 
@@ -119,7 +118,7 @@ IPhone MySuperLinkedList::popBack()
 
   --size;
 
-  return currentData;
+  return lastData;
 }
 
 int MySuperLinkedList::getSize()

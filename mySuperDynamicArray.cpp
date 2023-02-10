@@ -1,7 +1,9 @@
+#include <iostream>
 #include "mySuperDynamicArray.h"
 #include "iphone.h"
 
 const int GROWTH_FACTOR = 2;
+const int CAPACITY = 5;
 
 MySuperDynamicArray::MySuperDynamicArray()
 {
@@ -15,16 +17,17 @@ void MySuperDynamicArray::reallocIfFull()
   if (size == capacity)
   {
     capacity *= GROWTH_FACTOR;
-    IPhone *newData = new IPhone[capacity];
+
+    IPhone *temp = new IPhone[capacity];
 
     for (int i = 0; i < size; i++)
     {
-      newData[i] = iphones[i];
+      temp[i] = iphones[i];
     }
 
     delete[] iphones;
 
-    iphones = newData;
+    iphones = temp;
   }
 }
 
@@ -48,21 +51,22 @@ void MySuperDynamicArray::pushFront(IPhone iphone)
 
 IPhone MySuperDynamicArray::popFront()
 {
-  if (!isEmpty())
+  if (isEmpty())
   {
-    IPhone iphone = iphones[0];
-
-    for (int i = 0; i < size; i++)
-    {
-      iphones[i] = iphones[i + 1];
-    }
-
-    size--;
-
-    return iphone;
+    std::cerr << "What exactly were you going to pop? The array's empty!" << std::endl;
+    exit(1);
   }
 
-  std::cerr << "What exactly were you going to pop? The array's empty!" << std::endl;
+  IPhone iphone = iphones[0];
+
+  for (int i = 0; i < size; i++)
+  {
+    iphones[i] = iphones[i + 1];
+  }
+
+  size--;
+
+  return iphone;
 }
 
 void MySuperDynamicArray::pushBack(IPhone iphone)
@@ -74,22 +78,24 @@ void MySuperDynamicArray::pushBack(IPhone iphone)
 
 IPhone MySuperDynamicArray::popBack()
 {
-  if (!isEmpty())
+  if (isEmpty())
   {
-    return iphones[--size];
+    std::cerr << "Haven't you learned your lesson? Nothing to pop!" << std::endl;
+    exit(1);
   }
 
-  std::cerr << "Haven't you learned your lesson? Nothing to pop!" << std::endl;
+  return iphones[--size];
 }
 
 IPhone MySuperDynamicArray::get(int index)
 {
-  if (index >= 0 && index < size)
+  if (index <= 0 && index > size)
   {
-    return iphones[index];
+    std::cerr << "Provide a valid index or go hit the books and learn how arrays work!" << std::endl;
+    exit(1);
   }
 
-  std::cerr << "Provide a valid index or go hit the books and learn how arrays work!" << std::endl;
+  return iphones[index];
 }
 
 int MySuperDynamicArray::getSize()

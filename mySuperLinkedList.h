@@ -16,6 +16,7 @@ struct MySuperLinkedList : public BenchmarkBase
 private:
   Node *head;
   int size;
+  bool isEmpty();
 
 public:
   MySuperLinkedList();
